@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.3"
 
 services:
   mysql:
@@ -48,11 +48,10 @@ services:
       - .:/usr/app/frontend
     command: yarn start
 
-
 networks:
   production-network:
-      driver: bridge
-      ipam:
-        driver: default
-        config:
-         - subnet: 10.1.0.0/16
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.1.0.0/16
