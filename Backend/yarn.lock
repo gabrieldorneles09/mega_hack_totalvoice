@@ -1099,6 +1099,11 @@ generate-function@^2.3.1:
   dependencies:
     is-property "^1.0.2"
 
+generate-sms-verification-code@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/generate-sms-verification-code/-/generate-sms-verification-code-1.0.5.tgz#491bdad6195cfe002543548cc01e79552bde99bb"
+  integrity sha512-0dDejJxK60bs+5P5PfSyo9PvHSpjvnYb8if8FBEOFVycDJs3OSByc2JOrkJOGVLTjIMdvLqQv5/aesQlvYPQ7w==
+
 get-caller-file@^2.0.1:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-2.0.5.tgz#4f94412a82db32f36e3b0b9741f8a97feb031f7e"

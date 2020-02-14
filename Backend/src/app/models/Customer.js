@@ -1,20 +1,20 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Provider extends Model {
+class Customer extends Model {
   static init(sequelize) {
     super.init(
       {
         name: Sequelize.STRING,
-        cidade: Sequelize.STRING,
-        cnpj: Sequelize.STRING,
+        email: Sequelize.STRING,
+        telephone: Sequelize.STRING,
+        cep: Sequelize.STRING,
       },
       {
         sequelize,
       }
     );
-
     return this;
   }
 }
 
-export default Provider;
+export default Customer;

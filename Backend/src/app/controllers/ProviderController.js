@@ -1,6 +1,10 @@
+import Provider from '../models/Provider';
+
 class ProviderController {
-  index(req, res) {
-    return;
+  async index(req, res) {
+    const providers = await Provider.findAll();
+
+    return res.json(providers);
   }
 }
 
