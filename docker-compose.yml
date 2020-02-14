@@ -1,0 +1,58 @@
+version: "3.7"
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      production-network:
+        ipv4_address: 10.1.0.2
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=database
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=mudar123
+  backend:
+    container_name: node-backend
+    build:
+      context: .
+      dockerfile: Dockerfile-node
+    # build: ./Dockerfile-node
+    ports:
+      - "3333:3333"
+    networks:
+      production-network:
+        ipv4_address: 10.1.0.3
+    links:
+      - mysql
+    volumes:
+      - .:/usr/app/backend
+    command: yarn dev
+
+  frontend:
+    container_name: node-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile-node-front
+    # build: ./Dockerfile-node-front
+    ports:
+      - "3000:3000"
+    networks:
+      production-network:
+        ipv4_address: 10.1.0.4
+    volumes:
+      - .:/usr/app/frontend
+    command: yarn start
+
+
+networks:
+  production-network:
+      driver: bridge
+      ipam:
+        driver: default
+        config:
+         - subnet: 10.1.0.0/16
