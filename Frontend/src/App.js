@@ -1,24 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "antd/dist/antd.css";
+import GlobalStyle from './css/global';
+import MenuApp from './components/Menu'
+import Conteudo from './components/Content'
+
+// import './css/global.css'
+import { Layout, Row, Col, Menu } from 'antd';
+
+const { Header, Footer, Sider, Content } = Layout;
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <MenuApp title="mega hack totalVoice"></MenuApp>
+      <Layout>
+      {/* <Header className="box"> */}
+      {/* </Header> */}
+      <br></br>
+      <Row>
+        <Content>
+          <Conteudo></Conteudo>
+        </Content>
+      </Row>
+      </Layout>
     </div>
   );
 }

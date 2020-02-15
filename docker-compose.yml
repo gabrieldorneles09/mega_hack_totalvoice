@@ -30,7 +30,7 @@ services:
     links:
       - mysql
     volumes:
-      - .:/usr/app/backend
+      - ./backend:/usr/app/backend
     command: yarn dev
 
   frontend:
@@ -45,7 +45,7 @@ services:
       production-network:
         ipv4_address: 10.1.0.4
     volumes:
-      - .:/usr/app/frontend
+      - ./frontend:/usr/app/frontend
     command: yarn start
 
 networks:
