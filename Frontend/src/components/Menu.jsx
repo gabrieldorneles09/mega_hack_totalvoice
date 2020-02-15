@@ -1,9 +1,9 @@
 import React from 'react'
 import '../css/global.css'
-import { Layout, Row, Col, Menu, Typography } from 'antd';
+import {Menu, Typography } from 'antd';
 
-const { Header, Footer, Sider, Content } = Layout;
-const { Title, Paragraph } = Typography;
+// const { Header, Footer, Sider, Content } = Layout;
+const { Title } = Typography;
 export default props =>
   
 
