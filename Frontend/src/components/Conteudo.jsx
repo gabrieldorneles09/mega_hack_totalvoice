@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { updateProfileRequest } from '../user/actions';
 
 import "../css/global.css";
 import "../css/content.css";
@@ -19,6 +21,13 @@ export default function Conteudo() {
   const [data, setData] = useState("");
   const [repositories, setRepositories] = useState([]);
   const [visible, setVisible] = useState(false);
+
+  const dispatch = useDispatch();
+  const profile = useSelector(state => state.user.profile);
+
+  function insertUser(data) {
+    dispatch(updateProfileRequest(data));
+  }
 
   function search(value) {
     //  console.log(value);
@@ -100,7 +109,7 @@ return (
         onOk={e => handleOk(e)}
         onCancel={e => handleCancel(e)}
       >
-        <form>
+        <form initialData={profile} onSubmit={insertUser}>
           <div class="row">
             <div class="col-xs-12 col-md-12">
               <input type="text" name="nome" class="form-control" placeholder="Entre com o nome" />
