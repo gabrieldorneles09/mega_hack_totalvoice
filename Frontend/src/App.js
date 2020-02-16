@@ -1,7 +1,9 @@
-import React from 'react';
-import Rotas from './routes'
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import '../../node_modules/font-awesome/css/font-awesome.min.css'
+import React from "react";
+import Rotas from "./routes";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "font-awesome/css/font-awesome.min.css";
+// import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import "../../node_modules/font-awesome/css/font-awesome.min.css";
 import "antd/dist/antd.css";
 // import GlobalStyle from './css/global';
 // import MenuApp from './components/Menu'
@@ -12,11 +14,10 @@ import "antd/dist/antd.css";
 
 // const { Header, Footer, Sider, Content } = Layout;
 
-
 function App() {
   return (
     <div className="App">
-        {/* <MenuApp title="mega hack totalVoice"></MenuApp>
+      {/* <MenuApp title="mega hack totalVoice"></MenuApp>
       <Layout> */}
       {/* <Header className="box"> */}
       {/* </Header> */}
