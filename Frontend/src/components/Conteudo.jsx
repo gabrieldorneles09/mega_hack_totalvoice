@@ -6,7 +6,7 @@ import "../css/content.css";
 // import Card from './Card'
 
 // import InputMask from 'react-input-mask';
-import axios from 'axios'
+import axios from "axios"
 import { Typography, Input, Modal, Button } from "antd";
 
 // const { Header, Footer, Sider, Content } = Layout;
@@ -28,40 +28,57 @@ export default function Conteudo() {
     //atualiza o state do load
     setData(value);
     setLoad(1);
-    // console.log("search:",value, load);
+    // console.log("search:",value, l/services/:idoad);
   }
 
   useEffect(() => {
     async function fetchData() {
       if (load != 0) {
-        const url = ""
-        const response = axios.post(url,"{data: dfdf}").then(response =>{
-          setResponseSearch(response)
-          console.log(responseSearch)
-        }).catch(error =>{
-          console.log(error)
-        })
-        const dados = await response.data
-        console.table(dados);
-        setRepositories(dados);
-        setLoad(0);
+        const url = "http://localhost:3333/providers/";
+        try {
+          const response = await axios.get(url);
+          console.log(response);
+          setResponseSearch(response);
+          console.log(responseSearch);
+
+          const dados = response.data;
+          console.table(dados);
+          setRepositories(dados);
+          setLoad(0);
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
     fetchData();
   }, [load]);
 
   function handleOk(e)  {
-    console.log(e);
-    let form = document.getElementById("form").serialize()
-    const urlInsertData = '';
-    axios.post(urlInsertData,form).then(response =>{
-        setResponseInsertData(response)
-        console.log(responseInsertData)
-      }).catch(error => {
-        console.log(error)
-      })
+    console.log(e); 
+
+    let cep = document.getElementById('cep').value
+    let email = document.getElementById('email').value
+    let telefone = document.getElementById('telefone').value 
+
+    const request =   {
+      "cep": cep,
+      "email": email,
+      "telefone":telefone,
+    }
+
+    console.log(request)
+    let jsonForm = JSON.stringify(request);
+    console.log(jsonForm)
+    const urlInsertData = 'http://localhost:3333/customers';
+    axios.post(urlInsertData,jsonForm).then(response =>{
+      console.log(response)
+      setResponseInsertData(response)
+    }).catch(error =>{
+      console.log(error)
+    })
+    console.log(responseInsertData)
     setVisible(false)
-  };
+  };dif
 
   function showModal() {
 
@@ -98,7 +115,10 @@ return (
                 <h2>{repo.name}</h2>
               </div>
               <div class="card-body">
-                <p>{repo.description}</p>
+                <p>{repo.cidade}</p>
+              </div>
+              <div class="card-body">
+                <p>{repo.cnpj}</p>
               </div>
               {/* onClick={} */}
               <div class="card-footer text-muted">
@@ -119,19 +139,19 @@ return (
         <form id="form">
           <div class="row">
             <div class="col-xs-12 col-md-12">
-              <input type="text" name="nome" class="form-control" placeholder="Entre com o nome" required/>
+              <input id="cep" type="text" name="cep" class="form-control" placeholder="Entre com o cep" required/>
             </div>
           </div>
           <br/>
           <div class="row">
             <div class="col-xs-12 col-md-12">
-              <input type="text" name="email" class="form-control" placeholder="Entre com o e-mail" required/>
+              <input id="email" type="text" name="email" class="form-control" placeholder="Entre com o e-mail" required/>
             </div>
           </div>
           <br/>
           <div class="row">
             <div class="col-xs-12 col-md-12">
-              <input type="text" name="telefone" class="form-control" placeholder="Entre com o telefone" required/>
+              <input id="telefone" type="text" name="telefone" class="form-control" placeholder="Entre com o telefone" required/>
             </div>
           </div>
           {/* <button type="submit">Cadastrar</button> */}
