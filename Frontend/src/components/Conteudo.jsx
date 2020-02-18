@@ -34,7 +34,7 @@ export default function Conteudo() {
   useEffect(() => {
     async function fetchData() {
       if (load != 0) {
-        const url = "http://localhost:3333/providers/";
+         const url = "http://localhost:3333/providers/";
         try {
           const response = await axios.get(url);
           console.log(response);
@@ -61,9 +61,9 @@ export default function Conteudo() {
     let telefone = document.getElementById('telefone').value 
 
     const request =   {
-      "cep": cep,
       "email": email,
-      "telefone":telefone,
+      "telephone": telefone,
+      "cep": cep,
     }
 
     console.log(request)
@@ -152,6 +152,11 @@ return (
           <div class="row">
             <div class="col-xs-12 col-md-12">
               <input id="telefone" type="text" name="telefone" class="form-control" placeholder="Entre com o telefone" required/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-md-12">
+              <input id="token" type="text" name="token" class="form-control" placeholder="Entre com o token" required/>
             </div>
           </div>
           {/* <button type="submit">Cadastrar</button> */}
