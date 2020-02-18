@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { updateProfileRequest } from '../user/actions';
 
 import "../css/global.css";
 import "../css/content.css";
@@ -8,7 +6,7 @@ import "../css/content.css";
 // import Card from './Card'
 
 // import InputMask from 'react-input-mask';
-// import axios from 'axios'
+import axios from 'axios'
 import { Typography, Input, Modal, Button } from "antd";
 
 // const { Header, Footer, Sider, Content } = Layout;
@@ -21,13 +19,8 @@ export default function Conteudo() {
   const [data, setData] = useState("");
   const [repositories, setRepositories] = useState([]);
   const [visible, setVisible] = useState(false);
-
-  const dispatch = useDispatch();
-  const profile = useSelector(state => state.user.profile);
-
-  function insertUser(data) {
-    dispatch(updateProfileRequest(data));
-  }
+  const [responseInsertData, setResponseInsertData] = useState();
+  const [responseSearch, setResponseSearch] = useState();
 
   function search(value) {
     //  console.log(value);
@@ -41,9 +34,14 @@ export default function Conteudo() {
   useEffect(() => {
     async function fetchData() {
       if (load != 0) {
-        const url = "https://api.github.com/users/renatoReboucas/repos";
-        const response = await fetch(url);
-        const dados = await response.json();
+        const url = ""
+        const response = axios.post(url,"{data: dfdf}").then(response =>{
+          setResponseSearch(response)
+          console.log(responseSearch)
+        }).catch(error =>{
+          console.log(error)
+        })
+        const dados = await response.data
         console.table(dados);
         setRepositories(dados);
         setLoad(0);
@@ -52,16 +50,25 @@ export default function Conteudo() {
     fetchData();
   }, [load]);
 
+  function handleOk(e)  {
+    console.log(e);
+    let form = document.getElementById("form").serialize()
+    const urlInsertData = '';
+    axios.post(urlInsertData,form).then(response =>{
+        setResponseInsertData(response)
+        console.log(responseInsertData)
+      }).catch(error => {
+        console.log(error)
+      })
+    setVisible(false)
+  };
+
   function showModal() {
 
        setVisible(true)
 
   };
 
-  function handleOk(e)  {
-    console.log(e);
-    setVisible(false)
-  };
 
   function handleCancel(e) {
     console.log(e);
@@ -109,24 +116,25 @@ return (
         onOk={e => handleOk(e)}
         onCancel={e => handleCancel(e)}
       >
-        <form initialData={profile} onSubmit={insertUser}>
+        <form id="form">
           <div class="row">
             <div class="col-xs-12 col-md-12">
-              <input type="text" name="nome" class="form-control" placeholder="Entre com o nome" />
+              <input type="text" name="nome" class="form-control" placeholder="Entre com o nome" required/>
             </div>
           </div>
           <br/>
           <div class="row">
             <div class="col-xs-12 col-md-12">
-              <input type="text" name="email" class="form-control" placeholder="Entre com o e-mail" />
+              <input type="text" name="email" class="form-control" placeholder="Entre com o e-mail" required/>
             </div>
           </div>
           <br/>
           <div class="row">
             <div class="col-xs-12 col-md-12">
-              <input type="text" name="telefone" class="form-control" placeholder="Entre com o telefone" />
+              <input type="text" name="telefone" class="form-control" placeholder="Entre com o telefone" required/>
             </div>
           </div>
+          {/* <button type="submit">Cadastrar</button> */}
         </form>
       </Modal>
     </div>
