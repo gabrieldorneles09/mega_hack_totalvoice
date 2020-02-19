@@ -1,9 +1,10 @@
 module.exports = {
   dialect: 'mysql',
-  host: 'mysql',
-  username: 'user',
+  host: 'localhost',
+  port: '8889',
+  username: 'root',
   database: 'database',
-  password: 'mudar123',
+  password: 'root',
   define: {
     timestamps: true,
     underscored: true,
