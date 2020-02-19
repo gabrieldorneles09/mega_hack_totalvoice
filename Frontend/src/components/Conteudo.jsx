@@ -6,7 +6,8 @@ import "../css/content.css";
 // import Card from './Card'
 
 // import InputMask from 'react-input-mask';
-import axios from "axios"
+
+import axios from "axios";
 import { Typography, Input, Modal, Button } from "antd";
 
 // const { Header, Footer, Sider, Content } = Layout;
@@ -34,7 +35,7 @@ export default function Conteudo() {
   useEffect(() => {
     async function fetchData() {
       if (load != 0) {
-         const url = "http://localhost:3333/providers/";
+        const url = "http://localhost:3333/providers/";
         try {
           const response = await axios.get(url);
           console.log(response);
@@ -78,24 +79,20 @@ export default function Conteudo() {
     })
     console.log(responseInsertData)
     setVisible(false)
-  };dif
-
-  function showModal() {
-
-       setVisible(true)
-
   };
-
+  
+  function showModal() {
+    setVisible(true);
+  }
 
   function handleCancel(e) {
     console.log(e);
-    setVisible(false)
-  };
+    setVisible(false);
+  }
 
-return (
-  <>
+  return (
+    <>
       <div className="row margTop">
-        
         <div className="col-md-12 col-xs-12 offset-md-3">
           <Search
             size="large"
@@ -122,47 +119,61 @@ return (
               </div>
               {/* onClick={} */}
               <div class="card-footer text-muted">
-                <button className="btn btn-success" onClick={()=>showModal()}>Ver mais</button>
+                <button className="btn btn-success" onClick={() => showModal()}>
+                  Ver mais
+                </button>
               </div>
             </div>
           </div>
-          
         ))}
       </div>
-    <div>
-      <Modal
-        title="Preencha os dados para continuar"
-        visible={visible}
-        onOk={e => handleOk(e)}
-        onCancel={e => handleCancel(e)}
-      >
-        <form id="form">
-          <div class="row">
-            <div class="col-xs-12 col-md-12">
-              <input id="cep" type="text" name="cep" class="form-control" placeholder="Entre com o cep" required/>
+      <div>
+        <Modal
+          title="Preencha os dados para continuar"
+          visible={visible}
+          onOk={e => handleOk(e)}
+          onCancel={e => handleCancel(e)}
+        >
+          <form id="form">
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+                <input
+                  type="text"
+                  name="nome"
+                  class="form-control"
+                  placeholder="Entre com o nome"
+                  required
+                />
+              </div>
             </div>
-          </div>
-          <br/>
-          <div class="row">
-            <div class="col-xs-12 col-md-12">
-              <input id="email" type="text" name="email" class="form-control" placeholder="Entre com o e-mail" required/>
+            <br />
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+                <input
+                  type="text"
+                  name="email"
+                  class="form-control"
+                  placeholder="Entre com o e-mail"
+                  required
+                />
+              </div>
             </div>
-          </div>
-          <br/>
-          <div class="row">
-            <div class="col-xs-12 col-md-12">
-              <input id="telefone" type="text" name="telefone" class="form-control" placeholder="Entre com o telefone" required/>
+            <br />
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+                <input
+                  type="text"
+                  name="telefone"
+                  class="form-control"
+                  placeholder="Entre com o telefone"
+                  required
+                />
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12 col-md-12">
-              <input id="token" type="text" name="token" class="form-control" placeholder="Entre com o token" required/>
-            </div>
-          </div>
-          {/* <button type="submit">Cadastrar</button> */}
-        </form>
-      </Modal>
-    </div>
-</>
-  )
+            {/* <button type="submit">Cadastrar</button> */}
+          </form>
+        </Modal>
+      </div>
+    </>
+  );
 }
